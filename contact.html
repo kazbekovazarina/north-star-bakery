@@ -75,7 +75,7 @@
           </p>
         </div>
 
-        <form class="contact-form" action="contact.html" method="get">
+        <form class="contact-form" action="contact.html" method="get" novalidate>
           <fieldset>
             <legend>Your Information</legend>
 
@@ -88,7 +88,9 @@
               required
               minlength="2"
               maxlength="60"
+              aria-describedby="name-error"
             >
+            <p class="error-message" id="name-error"></p>
 
             <label for="customer-email">Email address</label>
             <input
@@ -97,7 +99,9 @@
               name="customer-email"
               autocomplete="email"
               required
+              aria-describedby="email-error"
             >
+            <p class="error-message" id="email-error"></p>
 
             <label for="customer-phone">
               Phone number (if phone is preferred)
@@ -107,13 +111,16 @@
               id="customer-phone"
               name="customer-phone"
               autocomplete="tel"
+              aria-describedby="phone-error"
             >
+            <p class="error-message" id="phone-error"></p>
 
             <span>Preferred contact method</span>
             <div class="radio-row">
               <label>
                 <input
                   type="radio"
+                  id="contact-email"
                   name="contact-method"
                   value="email"
                   required
@@ -124,24 +131,27 @@
               <label>
                 <input
                   type="radio"
+                  id="contact-phone"
                   name="contact-method"
                   value="phone"
                 >
                 Phone
               </label>
             </div>
+            <p class="error-message" id="contact-method-error"></p>
           </fieldset>
 
           <fieldset>
             <legend>Request Details</legend>
 
             <label for="request-type">Request type</label>
-            <select id="request-type" name="request-type" required>
+            <select id="request-type" name="request-type" required aria-describedby="request-type-error">
               <option value="">Select a request type</option>
               <option value="pre-order">Pre-order</option>
               <option value="event">Event inquiry</option>
               <option value="question">General question</option>
             </select>
+            <p class="error-message" id="request-type-error"></p>
 
             <label for="pickup-date">Preferred pickup date</label>
             <input
@@ -149,7 +159,10 @@
               id="pickup-date"
               name="pickup-date"
               required
+              aria-describedby="pickup-date-help pickup-date-error"
             >
+            <p class="field-help" id="pickup-date-help">Please allow at least two business days.</p>
+            <p class="error-message" id="pickup-date-error"></p>
 
             <label for="item-details">Item details and quantity</label>
             <textarea
@@ -159,7 +172,10 @@
               required
               minlength="10"
               maxlength="500"
+              aria-describedby="item-details-help item-details-error"
             ></textarea>
+            <p class="field-help" id="item-details-help">Enter at least 10 characters. Saved favorites will appear here automatically.</p>
+            <p class="error-message" id="item-details-error"></p>
 
             <label for="allergy-notes">
               Allergy notes, if applicable
@@ -178,6 +194,7 @@
           </fieldset>
 
           <button type="submit">Send Request</button>
+          <p id="form-status" class="form-status" role="status"></p>
         </form>
       </div>
     </section>
@@ -191,5 +208,6 @@
       </p>
     </div>
   </footer>
+  <script src="script.js" defer></script>
 </body>
 </html>
